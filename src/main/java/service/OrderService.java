@@ -1,14 +1,10 @@
 package service;
 
-import model.Category;
 import model.Customer;
 import model.Order;
 import model.Product;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class OrderService {
     private List<Product> productsInShop;
@@ -22,11 +18,10 @@ public class OrderService {
     }
 
     public void removeProductFromOrder(int productPosition) {
-        if (productPosition >= 0 && productPosition < productsInShop.size()){
+        if (productPosition >= 0 && productPosition < productsInShop.size()) {
             Product product = productsInShop.get(productPosition);
-        currentOrder.removeProduct(product);
-        }
-        else {
+            currentOrder.removeProduct(product);
+        } else {
             System.out.println("This product does not exist");
         }
     }

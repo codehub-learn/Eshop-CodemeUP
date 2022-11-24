@@ -35,15 +35,15 @@ public class Main {
                     int userAnswer = scanner.nextInt();
                     orderService.removeProductFromOrder(userAnswer);
                     break;
-                case "a", "add" :
+                case "a", "add":
                     System.out.println("Give the product number");
                     int productid = scanner.nextInt();
                     orderService.addProductToOrder(productid);
                     break;
-                case "s", "show" :
+                case "s", "show":
                     showOrder();
                     break;
-                case "x", "exit" :
+                case "x", "exit":
                     exit = true;
                     break;
                 default:

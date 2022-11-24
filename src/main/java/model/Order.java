@@ -44,13 +44,13 @@ public class Order {
         return dateCreated;
     }
 
-    public void addProduct(Product product){
+    public void addProduct(Product product) {
         products.add(product);
         productCount++;
         totalCost += product.getPrice();
     }
 
-    public void removeProduct(Product product){
+    public void removeProduct(Product product) {
         products.remove(product);
         productCount--;
         totalCost -= product.getPrice();
