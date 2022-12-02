@@ -2,8 +2,10 @@ import bootstrap.DataImporter;
 import model.Customer;
 import model.Order;
 import model.Product;
+import repository.FileRepository;
 import service.OrderService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,12 +13,17 @@ public class Main {
 
     private static OrderService orderService;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        /*
         List<Customer> customers = DataImporter.getCustomers();
         List<Product> products = DataImporter.getProducts();
         List<Order> orders = DataImporter.getOrders();
         orderService = new OrderService(products, customers, orders.get(0));
         interactWithUser();
+        */
+
+        FileRepository fileRepository = new FileRepository();
+        fileRepository.read("data/application.txt");
     }
 
     public static void showOrder() {
