@@ -1,12 +1,9 @@
 import factory.ProductFactory;
-import model.Category;
 import model.Product;
 import repository.FileRepository;
 import service.OrderService;
 
 import java.io.IOException;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
