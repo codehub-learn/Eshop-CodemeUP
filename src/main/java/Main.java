@@ -1,12 +1,7 @@
-import bootstrap.DataImporter;
-import model.Customer;
-import model.Order;
-import model.Product;
 import repository.FileRepository;
 import service.OrderService;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
