@@ -1,7 +1,13 @@
+import factory.ProductFactory;
+import model.Category;
+import model.Product;
 import repository.FileRepository;
 import service.OrderService;
 
 import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +15,7 @@ public class Main {
     private static OrderService orderService;
 
     public static void main(String[] args) throws IOException {
+        // todo: refactor commented code
         /*
         List<Customer> customers = DataImporter.getCustomers();
         List<Product> products = DataImporter.getProducts();
@@ -17,8 +24,22 @@ public class Main {
         interactWithUser();
         */
 
+        // todo: refactor importing logic & add inheritance etc.
         FileRepository fileRepository = new FileRepository();
+        List<String> productsAsStrings = fileRepository.read("data/products.csv");
+
+        ProductFactory productFactory = new ProductFactory();
+        List<Product> products = productFactory.parse(productsAsStrings);
+
+        for (Product product : products) {
+            System.out.println(product);
+        }
+
+        /*
         fileRepository.read("data/application.txt");
+        fileRepository.save(lines,"test.txt");
+        */
+        // todo: save orders
     }
 
     public static void showOrder() {
