@@ -11,7 +11,9 @@ public class Main {
 
     private static OrderService orderService;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        long start = System.currentTimeMillis();
+
         // todo: refactor commented code
         /*
         List<Customer> customers = DataImporter.getCustomers();
@@ -37,6 +39,10 @@ public class Main {
         fileRepository.save(lines,"test.txt");
         */
         // todo: save orders
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println("End of program.");
+        System.out.println("The time it took to run the program was " + timeElapsed + " milliseconds.");
     }
 
     public static void showOrder() {
