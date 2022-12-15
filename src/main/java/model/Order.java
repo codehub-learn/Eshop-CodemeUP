@@ -8,15 +8,14 @@ import java.util.List;
 public class Order {
     private long id;
     private Customer customer;
-    private ArrayList<Product> products;
+    private ArrayList<OrderProduct> orderProducts;
     private Date dateCreated;
-    private int productCount;
     private double totalCost;
 
-    public Order(long id, Customer customer) {
-        this.id = id;
+    public Order(Customer customer) {
+        this.id = 0;
         this.customer = customer;
-        this.products = new ArrayList<>();
+        this.orderProducts = new ArrayList<>();
         this.dateCreated = new Date();
     }
 
@@ -36,36 +35,18 @@ public class Order {
         this.customer = customer;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
     public Date getDateCreated() {
         return dateCreated;
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
-        productCount++;
-        totalCost += product.getPrice();
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-        productCount--;
-        totalCost -= product.getPrice();
-    }
-
     @Override
     public String toString() {
-        DecimalFormat df = new DecimalFormat("0.00");
         return "Order{" +
                 "id=" + id +
                 ", customer=" + customer +
-                ", products=" + products +
+                ", orderProducts=" + orderProducts +
                 ", dateCreated=" + dateCreated +
-                ", productCount=" + productCount +
-                ", totalCost=" + df.format(totalCost) +
+                ", totalCost=" + totalCost +
                 '}';
     }
 }

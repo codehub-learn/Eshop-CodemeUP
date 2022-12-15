@@ -22,13 +22,13 @@ public class DataImporter {
 
     public static List<Customer> getCustomers() {
         return Arrays.asList(
-                new Customer(123456789, "Paul Croft", "test address", "paulcroft@gmail.com")
+                new Customer("Paul Croft", "test address", "paulcroft@gmail.com")
         );
     }
 
     public static List<Order> getOrders() {
         return Arrays.asList(
-                new Order(234567890, getCustomers().get(0))
+                new Order(getCustomers().get(0))
         );
     }
 }

@@ -1,4 +1,6 @@
 import factory.ProductFactory;
+import model.Customer;
+import model.Order;
 import model.Product;
 import repository.FileRepository;
 import service.OrderService;
@@ -34,6 +36,12 @@ public class Main {
             System.out.println(product);
         }
 
+        OrderService orderService = new OrderService();
+        // todo: login feature to find who the customer is
+        Order order = orderService.initiateOrder(new Customer("Ioannis", "Athens", "ioannis@gmail.com"));
+
+        System.out.println(order);
+
         /*
         fileRepository.read("data/application.txt");
         fileRepository.save(lines,"test.txt");
@@ -45,11 +53,7 @@ public class Main {
         System.out.println("The time it took to run the program was " + timeElapsed + " milliseconds.");
     }
 
-    public static void showOrder() {
-        System.out.println(orderService.getCurrentOrder());
-    }
-
-    public static void interactWithUser() {
+/*    public static void interactWithUser() {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         while (true) {
@@ -77,5 +81,5 @@ public class Main {
             }
             if (exit) break;
         }
-    }
+    }*/
 }

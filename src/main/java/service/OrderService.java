@@ -11,13 +11,27 @@ public class OrderService {
     private List<Customer> customers;
     private Order currentOrder;
 
-    public OrderService(List<Product> productsInShop, List<Customer> customers, Order currentOrder) {
+/*    public OrderService(List<Product> productsInShop, List<Customer> customers, Order currentOrder) {
         this.productsInShop = productsInShop;
         this.customers = customers;
         this.currentOrder = currentOrder;
+    }*/
+
+    public Order initiateOrder(Customer customer){
+        return new Order(customer);
     }
 
-    public void removeProductFromOrder(int productPosition) {
+    public void addProductToOrder(Product product, Order order){
+
+    }
+
+    public void removeProductFromOrder(Product product, Order order){}
+
+    public void checkout(Order order){}
+
+
+
+    /*public void removeProductFromOrder(int productPosition) {
         if (productPosition >= 0 && productPosition < productsInShop.size()) {
             Product product = productsInShop.get(productPosition);
             currentOrder.removeProduct(product);
@@ -37,5 +51,5 @@ public class OrderService {
 
     public Order getCurrentOrder() {
         return currentOrder;
-    }
+    }*/
 }

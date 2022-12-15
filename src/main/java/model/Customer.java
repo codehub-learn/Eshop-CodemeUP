@@ -5,9 +5,10 @@ public class Customer {
     private String name;
     private String address;
     private String email;
+    private double balance;
 
-    public Customer(long id, String name, String address, String email) {
-        this.id = id;
+    public Customer(String name, String address, String email) {
+        this.id = 0;
         this.name = name;
         this.address = address;
         this.email = email;
