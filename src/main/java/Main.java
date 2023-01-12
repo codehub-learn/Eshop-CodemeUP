@@ -39,9 +39,20 @@ public class Main {
         OrderService orderService = new OrderService();
         // todo: login feature to find who the customer is
         Order order = orderService.initiateOrder(new Customer("Ioannis", "Athens", "ioannis@gmail.com"));
-
+        System.out.println(order);
+        orderService.addProductToOrder(products.get(0), order);
+        orderService.addProductToOrder(products.get(0), order);
+        orderService.addProductToOrder(products.get(0), order);
+        System.out.println(order);
+        orderService.addProductToOrder(products.get(1), order);
+        System.out.println(order);
+        orderService.removeProductFromOrder(products.get(1), order);
         System.out.println(order);
 
+
+        products.get(0).setPrice(10);
+        System.out.println(order);
+        // todo checkout functionality <--- exercise for home
         /*
         fileRepository.read("data/application.txt");
         fileRepository.save(lines,"test.txt");

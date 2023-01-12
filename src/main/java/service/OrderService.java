@@ -2,6 +2,7 @@ package service;
 
 import model.Customer;
 import model.Order;
+import model.OrderProduct;
 import model.Product;
 
 import java.util.List;
@@ -22,12 +23,38 @@ public class OrderService {
     }
 
     public void addProductToOrder(Product product, Order order){
-
+        boolean productExists = false;
+        for (OrderProduct oP : order.getOrderProducts()) {
+            if(oP.getProduct().getName().equals(product.getName())){
+                int previousQuantity = oP.getQuantity();
+                oP.setQuantity(previousQuantity + 1);
+                double previousPrice = oP.getPrice();
+                oP.setPrice(previousPrice + product.getPrice());
+                productExists = true;
+                break;
+            }
+        }
+        if(!productExists){
+            OrderProduct orderProduct = new OrderProduct(product, product.getPrice(), 1);
+            order.getOrderProducts().add(orderProduct);
+        }
     }
 
-    public void removeProductFromOrder(Product product, Order order){}
+    public void removeProductFromOrder(Product product, Order order){
+        int index = 0;
+        for (int i = 0; i < order.getOrderProducts().size(); i++) {
+            OrderProduct orderProduct = order.getOrderProducts().get(i);
+            if(orderProduct.getProduct().getName().equals(product.getName())){
+                index = i;
+                break;
+            }
+        }
+        order.getOrderProducts().remove(index);
+    }
 
-    public void checkout(Order order){}
+    public void checkout(Order order){
+        // calculate total cost
+    }
 
 
 

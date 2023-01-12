@@ -1,9 +1,7 @@
 package model;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Order {
     private long id;
@@ -37,6 +35,26 @@ public class Order {
 
     public Date getDateCreated() {
         return dateCreated;
+    }
+
+    public ArrayList<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(ArrayList<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
     @Override
