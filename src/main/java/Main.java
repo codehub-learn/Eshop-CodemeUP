@@ -6,6 +6,7 @@ import repository.FileRepository;
 import service.OrderService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,11 +52,11 @@ public class Main {
         orderService.checkout(order);
         System.out.println(order);
 
-        /*
-        fileRepository.read("data/application.txt");
-        fileRepository.save(lines,"test.txt");
-        */
-        // todo: save orders
+        ArrayList<String> ordersStr = new ArrayList<>();
+        ordersStr.add(order.toString());
+        ordersStr.add(order.toString());
+        fileRepository.save(ordersStr, "data/saved_orders.csv");
+
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
         System.out.println("End of program.");

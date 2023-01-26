@@ -25,7 +25,7 @@ public class FileRepository {
 
     public void save(List<String> lines, String filepath) throws IOException {
         BufferedWriter writer = Files.newBufferedWriter(Path.of(filepath));
-        for (String line : lines) {
+        for (String line : lines) { // enhanced loop
             writer.write(line);
             writer.newLine();
         }
