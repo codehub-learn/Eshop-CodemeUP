@@ -6,27 +6,18 @@ import repository.FileRepository;
 import service.OrderService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     private static OrderService orderService;
+    private static Map<String, String> usernamesAndPasswords;
 
     public static void main(String[] args) throws IOException, InterruptedException {
         long start = System.currentTimeMillis();
 
-        // todo: refactor commented code
-        /*
-        List<Customer> customers = DataImporter.getCustomers();
-        List<Product> products = DataImporter.getProducts();
-        List<Order> orders = DataImporter.getOrders();
-        orderService = new OrderService(products, customers, orders.get(0));
-        interactWithUser();
-        */
+        initializeAuthentication();
 
-        // todo: refactor importing logic & add inheritance etc.
         FileRepository fileRepository = new FileRepository();
         List<String> productsAsStrings = fileRepository.read("data/products.csv");
 
@@ -61,6 +52,20 @@ public class Main {
         long timeElapsed = finish - start;
         System.out.println("End of program.");
         System.out.println("The time it took to run the program was " + timeElapsed + " milliseconds.");
+    }
+
+    private static void initializeAuthentication(){
+        usernamesAndPasswords = new HashMap<>(); // unique key, duplicate values are allowed
+        usernamesAndPasswords.put("ioannis", "patates15");
+        usernamesAndPasswords.put("ioannis", "ntomates15");
+        usernamesAndPasswords.put("manolis", "ntomates15");
+        usernamesAndPasswords.put("nikolaos", "ntomates15");
+        String password = usernamesAndPasswords.get("ioannis");
+        String password2 = usernamesAndPasswords.get("manolis");
+        String password3 = usernamesAndPasswords.get("nikolaos");
+        System.out.println(password);
+        System.out.println(password2);
+        System.out.println(password3);
     }
 
 /*    public static void interactWithUser() {
