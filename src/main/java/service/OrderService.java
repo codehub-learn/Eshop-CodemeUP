@@ -24,6 +24,7 @@ public class OrderService {
 
     public void addProductToOrder(Product product, Order order){
         boolean productExists = false;
+        // if product already exists
         for (OrderProduct oP : order.getOrderProducts()) {
             if(oP.getProduct().getName().equals(product.getName())){
                 int previousQuantity = oP.getQuantity();
@@ -34,6 +35,7 @@ public class OrderService {
                 break;
             }
         }
+        // if product does not exist
         if(!productExists){
             OrderProduct orderProduct = new OrderProduct(product, product.getPrice(), 1);
             order.getOrderProducts().add(orderProduct);
@@ -54,6 +56,11 @@ public class OrderService {
 
     public void checkout(Order order){
         // calculate total cost
+        double totalCost = 0.0;
+        for (OrderProduct oP : order.getOrderProducts()) {
+            totalCost += oP.getPrice();
+        }
+        order.setTotalCost(totalCost);
     }
 
 

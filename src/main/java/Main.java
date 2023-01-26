@@ -48,11 +48,9 @@ public class Main {
         System.out.println(order);
         orderService.removeProductFromOrder(products.get(1), order);
         System.out.println(order);
-
-
-        products.get(0).setPrice(10);
+        orderService.checkout(order);
         System.out.println(order);
-        // todo checkout functionality <--- exercise for home
+
         /*
         fileRepository.read("data/application.txt");
         fileRepository.save(lines,"test.txt");
