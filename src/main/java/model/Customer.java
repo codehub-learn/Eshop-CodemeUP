@@ -6,12 +6,32 @@ public class Customer {
     private String address;
     private String email;
     private double balance;
+    private String username;
+    private String password;
+
+    public Customer(long id, String name, String address, String email, double balance, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.balance = balance;
+        this.username = username;
+        this.password = password;
+    }
 
     public Customer(String name, String address, String email) {
         this.id = 0;
         this.name = name;
         this.address = address;
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public long getId() {

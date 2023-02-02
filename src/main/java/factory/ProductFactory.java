@@ -6,8 +6,7 @@ import model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductFactory {
-
+public class ProductFactory implements Factory<Product> {
     public List<Product> parse(List<String> strings) {
         List<Product> products = new ArrayList<>();
         for (String productAsString : strings) {

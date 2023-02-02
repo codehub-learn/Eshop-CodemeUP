@@ -1,8 +1,10 @@
+import factory.CustomerFactory;
 import factory.ProductFactory;
 import model.Customer;
 import model.Order;
 import model.Product;
 import repository.FileRepository;
+import service.AuthenticatorService;
 import service.OrderService;
 
 import java.io.IOException;
@@ -11,15 +13,33 @@ import java.util.*;
 public class Main {
 
     private static OrderService orderService;
-    private static Map<String, String> usernamesAndPasswords;
 
     public static void main(String[] args) throws IOException, InterruptedException {
         long start = System.currentTimeMillis();
 
-        initializeAuthentication();
-
         FileRepository fileRepository = new FileRepository();
         List<String> productsAsStrings = fileRepository.read("data/products.csv");
+        List<String> customersAsStrings = fileRepository.read("data/customers.csv");
+
+        CustomerFactory customerFactory = new CustomerFactory();
+        List<Customer> customers = customerFactory.parse(customersAsStrings);
+
+        AuthenticatorService authenticatorService = new AuthenticatorService(customers);
+
+        boolean isAuthenticated = false;
+        while(!isAuthenticated){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Give me your username");
+            String username = scanner.nextLine();
+            System.out.println("Give me your password");
+            String password = scanner.nextLine();
+            if (authenticatorService.authenticate(username, password)){
+                isAuthenticated = true;
+                System.out.println("Right credentials!");
+            } else {
+                System.out.println("Wrong credentials!");
+            }
+        }
 
         ProductFactory productFactory = new ProductFactory();
         List<Product> products = productFactory.parse(productsAsStrings);
@@ -54,19 +74,6 @@ public class Main {
         System.out.println("The time it took to run the program was " + timeElapsed + " milliseconds.");
     }
 
-    private static void initializeAuthentication(){
-        usernamesAndPasswords = new HashMap<>(); // unique key, duplicate values are allowed
-        usernamesAndPasswords.put("ioannis", "patates15");
-        usernamesAndPasswords.put("ioannis", "ntomates15");
-        usernamesAndPasswords.put("manolis", "ntomates15");
-        usernamesAndPasswords.put("nikolaos", "ntomates15");
-        String password = usernamesAndPasswords.get("ioannis");
-        String password2 = usernamesAndPasswords.get("manolis");
-        String password3 = usernamesAndPasswords.get("nikolaos");
-        System.out.println(password);
-        System.out.println(password2);
-        System.out.println(password3);
-    }
 
 /*    public static void interactWithUser() {
         Scanner scanner = new Scanner(System.in);
