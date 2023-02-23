@@ -4,9 +4,20 @@ import java.util.Arrays;
 public class EncryptionAlgorithm {
 
     public static void main(String[] args) {
-        String originalMessage = "0000000"; //
+        long max_number = 9223372036854775807L; // 000 + 1 = 001 + 1 = 010 // 111 + 1 = 000
+        long max_number_enum = Long.MAX_VALUE;
+        System.out.println(max_number_enum);
+        System.out.println(max_number);
+        long max_number_plus_one = max_number + 5;
+        System.out.println(max_number_plus_one);
+        System.out.println(max_number - max_number_plus_one);
+        long negative_number = -5L;
+        System.out.println();
+/*
+        String originalMessage = "awf@ER8f338fm*AMWCV8nf38"; //
         long encryptedMessage = encrypt(originalMessage);
         System.out.println(encryptedMessage);
+        */
     }
 
     // 332 * 2 = 664
@@ -31,6 +42,10 @@ public class EncryptionAlgorithm {
         // if byte array contains bytes between 48-57 or 97-126
         // (if message contains number or small letters)
         // boolean -> +1
+
+        // awf@*R8f338fm*AMWCV8nf38
+        // 2150712508
+
         boolean numberOrSmallLetter = false;
         int numberOrSmallLetterCount = 0;
         for (int i = 0; i < bytes.length; i++) {
@@ -42,14 +57,20 @@ public class EncryptionAlgorithm {
                 break;
             }
         }
+        // 10 + 276 + 1
+        // 276
         long hash = length + sum;
         if(numberOrSmallLetter){
             hash++;
         }
         // convert to fixed number (fixed=standard length, i.e. 10 length)
         if(hash < 999999999){
-          // 9999999999 ^ 2 = .... > 64bits // todo next session (homework
-            // 999999998 + 2
+            // todo : multiply by (i.e.) 100 times and utilize overflow of long
+            // todo : download a encypter library and compare to ours (i.e. BEncrypter)
+
+            // 15 + 15 = 30 <-  X
+            // 15 * 15 = 225 <- X
+            // 15 ^ 3 = 3375 <- X
         }
         return hash;
     }
