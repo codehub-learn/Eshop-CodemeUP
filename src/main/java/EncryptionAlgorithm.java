@@ -1,23 +1,19 @@
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+import java.security.InvalidKeyException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class EncryptionAlgorithm {
 
-    public static void main(String[] args) {
-        long max_number = 9223372036854775807L; // 000 + 1 = 001 + 1 = 010 // 111 + 1 = 000
-        long max_number_enum = Long.MAX_VALUE;
-        System.out.println(max_number_enum);
-        System.out.println(max_number);
-        long max_number_plus_one = max_number + 5;
-        System.out.println(max_number_plus_one);
-        System.out.println(max_number - max_number_plus_one);
-        long negative_number = -5L;
-        System.out.println();
-/*
-        String originalMessage = "awf@ER8f338fm*AMWCV8nf38"; //
-        long encryptedMessage = encrypt(originalMessage);
-        System.out.println(encryptedMessage);
-        */
+    public static void main(String[] args) throws Exception{
+        String originalMessage = "password123";
+        //long encryptedMessage = encrypt(originalMessage);
+        //System.out.println(encryptedMessage);
+        publicPrivateKeyCryptography();
     }
 
     // 332 * 2 = 664
@@ -63,15 +59,45 @@ public class EncryptionAlgorithm {
         if(numberOrSmallLetter){
             hash++;
         }
-        // convert to fixed number (fixed=standard length, i.e. 10 length)
-        if(hash < 999999999){
-            // todo : multiply by (i.e.) 100 times and utilize overflow of long
-            // todo : download a encypter library and compare to ours (i.e. BEncrypter)
 
-            // 15 + 15 = 30 <-  X
-            // 15 * 15 = 225 <- X
-            // 15 ^ 3 = 3375 <- X
+        // convert to fixed number (fixed=standard length, i.e. 10 length)
+        long seed = 5437371;
+        for (int i = 0; i < 10; i++) {
+            hash *= seed;
+            System.out.println(hash);
         }
+        System.out.println("passed");
+        do {
+            hash *= seed;
+            if(hash < 0) hash *= (-1);
+            System.out.println(hash);
+        } while (hash <= 999999999L || hash >= 10000000000L);
+
         return hash;
+    }
+
+    private static void publicPrivateKeyCryptography() throws Exception {
+        // key pair generation
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(512);
+        KeyPair keyPair = keyGen.generateKeyPair();
+        System.out.println(keyPair.getPublic());
+        System.out.println(keyPair.getPrivate());
+        // store to a file...
+
+        String message = "Hello Guys";
+        // encrypt message based on public key
+        Cipher encryptionCipher = Cipher.getInstance("RSA");
+        encryptionCipher.init(Cipher.ENCRYPT_MODE, keyPair.getPublic());
+        byte[] encryptedMessage = encryptionCipher.doFinal(message.getBytes());
+        String encryptedMessageStr = new String(encryptedMessage);
+        System.out.println(encryptedMessageStr);
+
+        // decrypt message based on private key
+        Cipher decryptionCipher = Cipher.getInstance("RSA");
+        decryptionCipher.init(Cipher.DECRYPT_MODE, keyPair.getPrivate());
+        byte[] decryptedMessage = decryptionCipher.doFinal(encryptedMessage);
+        String decryptedMessageStr = new String(decryptedMessage);
+        System.out.println(decryptedMessageStr);
     }
 }
