@@ -1,15 +1,10 @@
 import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
-import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class EncryptionAlgorithm {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         String originalMessage = "password123";
         //long encryptedMessage = encrypt(originalMessage);
         //System.out.println(encryptedMessage);
