@@ -1,9 +1,10 @@
-import java.io.FileNotFoundException;
+package other.exception;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ExceptionShowcase {
+public class ExceptionShowcase1 {
 
     public static void main(String[] args) {
         System.out.println("start");
