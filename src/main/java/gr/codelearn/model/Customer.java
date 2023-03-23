@@ -1,4 +1,4 @@
-package model;
+package gr.codelearn.model;
 
 public class Customer {
     private long id;

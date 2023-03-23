@@ -1,22 +1,20 @@
-package service;
+package gr.codelearn.service;
 
-import model.Customer;
-import model.Order;
-import model.OrderProduct;
-import model.Product;
+import gr.codelearn.model.Customer;
+import gr.codelearn.model.Order;
+import gr.codelearn.model.OrderProduct;
+import gr.codelearn.model.Product;
+import gr.codelearn.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderService {
-    private List<Product> productsInShop;
-    private List<Customer> customers;
-    private Order currentOrder;
 
-/*    public OrderService(List<Product> productsInShop, List<Customer> customers, Order currentOrder) {
-        this.productsInShop = productsInShop;
-        this.customers = customers;
-        this.currentOrder = currentOrder;
-    }*/
+    @Autowired
+    private OrderRepository orderRepository;
 
     public Order initiateOrder(Customer customer){
         return new Order(customer);
@@ -61,29 +59,10 @@ public class OrderService {
             totalCost += oP.getPrice();
         }
         order.setTotalCost(totalCost);
+        orderRepository.save(order);
     }
 
-
-
-    /*public void removeProductFromOrder(int productPosition) {
-        if (productPosition >= 0 && productPosition < productsInShop.size()) {
-            Product product = productsInShop.get(productPosition);
-            currentOrder.removeProduct(product);
-        } else {
-            System.out.println("This product does not exist");
-        }
+    public List<Order> getAll(){
+        return orderRepository.getAll();
     }
-
-    public void addProductToOrder(int productPosition) {
-        if (productPosition >= 0 && productPosition < productsInShop.size()) {
-            Product product = productsInShop.get(productPosition);
-            currentOrder.addProduct(product);
-        } else {
-            System.out.println("This product does not exist");
-        }
-    }
-
-    public Order getCurrentOrder() {
-        return currentOrder;
-    }*/
 }

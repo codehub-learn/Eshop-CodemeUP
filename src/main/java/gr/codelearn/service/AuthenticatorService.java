@@ -1,6 +1,6 @@
-package service;
+package gr.codelearn.service;
 
-import model.Customer;
+import gr.codelearn.model.Customer;
 
 import java.util.HashMap;
 import java.util.List;

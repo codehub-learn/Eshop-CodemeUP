@@ -1,11 +1,13 @@
-import factory.CustomerFactory;
-import factory.ProductFactory;
-import model.Customer;
-import model.Order;
-import model.Product;
-import repository.FileRepository;
-import service.AuthenticatorService;
-import service.OrderService;
+package other;
+
+import gr.codelearn.factory.CustomerFactory;
+import gr.codelearn.factory.ProductFactory;
+import gr.codelearn.model.Customer;
+import gr.codelearn.model.Order;
+import gr.codelearn.model.Product;
+import gr.codelearn.repository.FileRepository;
+import gr.codelearn.service.AuthenticatorService;
+import gr.codelearn.service.OrderService;
 
 import java.io.IOException;
 import java.util.*;

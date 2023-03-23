@@ -1,7 +1,7 @@
-package factory;
+package gr.codelearn.factory;
 
-import model.Category;
-import model.Product;
+import gr.codelearn.model.Category;
+import gr.codelearn.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,4 @@
-package factory;
-
-import model.Product;
+package gr.codelearn.factory;
 
 import java.util.List;
 
